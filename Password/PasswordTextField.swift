@@ -140,5 +140,13 @@ extension PasswordTextField {
 
 // MARK: UITextFieldDelegate
 extension PasswordTextField: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print(textField.text)
+    }
     
+    // Called when return key pressed. It is necessary for dismissing keyboard.
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
+    }
 }
