@@ -9,6 +9,7 @@ import UIKit
 
 protocol PasswordTextFieldDelegate: AnyObject {
     func editingChanged(_ sender: PasswordTextField)
+    func editingDidEnd(_ sender: PasswordTextField)
 }
 
 class PasswordTextField: UIView {
@@ -141,11 +142,12 @@ extension PasswordTextField {
 // MARK: UITextFieldDelegate
 extension PasswordTextField: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print(textField.text)
+        delegate?.editingDidEnd(self)
     }
     
     // Called when return key pressed. It is necessary for dismissing keyboard.
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        delegate?.editingDidEnd(self)
         textField.endEditing(true)
         return true
     }
