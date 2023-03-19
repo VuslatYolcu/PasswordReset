@@ -76,6 +76,12 @@ extension PasswordTextField {
             eyeButton.leadingAnchor.constraint(equalToSystemSpacingAfter: textField.trailingAnchor, multiplier: 1),
             eyeButton.trailingAnchor.constraint(equalToSystemSpacingAfter: trailingAnchor, multiplier: 0)
         ])
+        
+        // CHCR
+        // Lock image and eye button should hug themselves that they should not stretch. On the other hand, text field should stretch. So, we are setting their content hugging priority
+        lockImageView.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .horizontal)
+        textField.setContentHuggingPriority(UILayoutPriority.defaultLow, for: .horizontal)
+        eyeButton.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .horizontal)
     }
 }
 
