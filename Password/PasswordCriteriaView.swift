@@ -11,6 +11,7 @@ import UIKit
 class PasswordCriteriaView: UIView {
     
     let stackView = UIStackView()
+    let imageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,9 +38,14 @@ extension PasswordCriteriaView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.spacing = 8
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(systemName: "circle")!.withTintColor(.tertiaryLabel, renderingMode: .alwaysOriginal)
     }
     
     func layout() {
+        stackView.addArrangedSubview(imageView)
+        
         addSubview(stackView)
         
         NSLayoutConstraint.activate([
@@ -48,5 +54,10 @@ extension PasswordCriteriaView {
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+        
+        NSLayoutConstraint.activate([
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor)
+        ])
+      
     }
 }
