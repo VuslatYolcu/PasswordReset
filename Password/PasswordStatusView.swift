@@ -11,6 +11,7 @@ import UIKit
 class PasswordStatusView: UIView {
     
     let stackView = UIStackView()
+    let criteriaLabel = UILabel()
     
     let lengthCriteriaView = PasswordCriteriaView(text: "8-32 characters (no spaces)")
     let uppercaseCriteriaView = PasswordCriteriaView(text: "uppercase letter (A-Z)")
@@ -46,6 +47,10 @@ extension PasswordStatusView {
         stackView.axis = .vertical
         stackView.distribution = .equalCentering
         
+        criteriaLabel.numberOfLines = 0
+        criteriaLabel.lineBreakMode = .byWordWrapping
+        criteriaLabel.attributedText = makeCriteriaMessage()
+        
         lengthCriteriaView.translatesAutoresizingMaskIntoConstraints = false
         uppercaseCriteriaView.translatesAutoresizingMaskIntoConstraints = false
         lowerCaseCriteriaView.translatesAutoresizingMaskIntoConstraints = false
@@ -56,6 +61,7 @@ extension PasswordStatusView {
     func layout() {
         
         stackView.addArrangedSubview(lengthCriteriaView)
+        stackView.addArrangedSubview(criteriaLabel)
         stackView.addArrangedSubview(uppercaseCriteriaView)
         stackView.addArrangedSubview(lowerCaseCriteriaView)
         stackView.addArrangedSubview(digitCriteriaView)
@@ -69,5 +75,21 @@ extension PasswordStatusView {
             bottomAnchor.constraint(equalToSystemSpacingBelow: stackView.bottomAnchor, multiplier: 2),
             trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 2)
         ])
+    }
+    
+    private func makeCriteriaMessage() -> NSAttributedString {
+        var plainTextAttributes = [NSAttributedString.Key: AnyObject]()
+        plainTextAttributes[.font] = UIFont.preferredFont(forTextStyle: .subheadline)
+        plainTextAttributes[.foregroundColor] = UIColor.secondaryLabel
+        
+        var boldTextAttributes = [NSAttributedString.Key: AnyObject]()
+        boldTextAttributes[.foregroundColor] = UIColor.label
+        boldTextAttributes[.font] = UIFont.preferredFont(forTextStyle: .subheadline)
+
+        let attrText = NSMutableAttributedString(string: "Use at least ", attributes: plainTextAttributes)
+        attrText.append(NSAttributedString(string: "3 of these 4 ", attributes: boldTextAttributes))
+        attrText.append(NSAttributedString(string: "criteria when setting your password:", attributes: plainTextAttributes))
+
+        return attrText
     }
 }
