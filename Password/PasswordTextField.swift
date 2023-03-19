@@ -9,6 +9,8 @@ import UIKit
 
 class PasswordTextField: UIView {
     
+    let lockImageView = UIImageView(image: UIImage(systemName: "lock.fill"))
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -30,9 +32,17 @@ extension PasswordTextField {
     func style() {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .systemOrange
+        
+        lockImageView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func layout() {
+        addSubview(lockImageView)
         
+        // Lock Image view
+        NSLayoutConstraint.activate([
+            lockImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            lockImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+        ])
     }
 }
