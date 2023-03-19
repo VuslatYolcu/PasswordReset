@@ -38,7 +38,6 @@ extension PasswordTextField {
     
     func style() {
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .systemOrange
         
         lockImageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -59,11 +58,14 @@ extension PasswordTextField {
         
         errorMessageLabel.translatesAutoresizingMaskIntoConstraints = false
         errorMessageLabel.textColor = .systemRed
-        errorMessageLabel.text = "Enter your password"
+        errorMessageLabel.text = "Your password must meet the requirements below."
         errorMessageLabel.font = .preferredFont(forTextStyle: .footnote)
-        errorMessageLabel.adjustsFontSizeToFitWidth = true
-        errorMessageLabel.minimumScaleFactor = 0.8
+        errorMessageLabel.numberOfLines = 0
+        errorMessageLabel.lineBreakMode = .byWordWrapping
         errorMessageLabel.isHidden = false
+        // In order to fit the text, you can adjust font size
+        //errorMessageLabel.adjustsFontSizeToFitWidth = true
+        //errorMessageLabel.minimumScaleFactor = 0.0
     }
     
     func layout() {
