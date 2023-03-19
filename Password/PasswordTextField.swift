@@ -12,6 +12,7 @@ class PasswordTextField: UIView {
     let lockImageView = UIImageView(image: UIImage(systemName: "lock.fill"))
     let textField = UITextField()
     let placeHolderText: String
+    let eyeButton = UIButton(type: .custom)
     
     init(placeHolderText: String) {
         self.placeHolderText = placeHolderText
@@ -45,11 +46,17 @@ extension PasswordTextField {
         //textField.delegate = self
         textField.keyboardType = .asciiCapable // Prevents emojis
         textField.attributedPlaceholder = NSAttributedString(string: placeHolderText, attributes: [NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel])
+        
+        eyeButton.translatesAutoresizingMaskIntoConstraints = false
+        eyeButton.setImage(UIImage(systemName: "eye.circle"), for: .normal)
+        eyeButton.setImage(UIImage(systemName: "eye.slash.circle"), for: .selected)
+        eyeButton.addTarget(self, action: #selector(togglePasswordView), for: .touchUpInside)
     }
     
     func layout() {
         addSubview(lockImageView)
         addSubview(textField)
+        addSubview(eyeButton)
         
         // Lock Image view
         NSLayoutConstraint.activate([
@@ -62,5 +69,20 @@ extension PasswordTextField {
             textField.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             textField.leadingAnchor.constraint(equalToSystemSpacingAfter: lockImageView.trailingAnchor, multiplier: 1)
         ])
+        
+        // Eye Button
+        NSLayoutConstraint.activate([
+            eyeButton.centerYAnchor.constraint(equalTo: textField.centerYAnchor),
+            eyeButton.leadingAnchor.constraint(equalToSystemSpacingAfter: textField.trailingAnchor, multiplier: 1),
+            eyeButton.trailingAnchor.constraint(equalToSystemSpacingAfter: trailingAnchor, multiplier: 0)
+        ])
+    }
+}
+
+// MARK: Actions
+extension PasswordTextField {
+    @objc func togglePasswordView(_ sender: Any) {
+        textField.isSecureTextEntry.toggle()
+        eyeButton.isSelected.toggle()
     }
 }
