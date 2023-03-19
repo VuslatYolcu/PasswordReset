@@ -14,6 +14,7 @@ class PasswordTextField: UIView {
     let placeHolderText: String
     let eyeButton = UIButton(type: .custom)
     let dividerView = UIView()
+    let errorMessageLabel = UILabel()
     
     init(placeHolderText: String) {
         self.placeHolderText = placeHolderText
@@ -55,6 +56,14 @@ extension PasswordTextField {
         
         dividerView.translatesAutoresizingMaskIntoConstraints = false
         dividerView.backgroundColor = .separator
+        
+        errorMessageLabel.translatesAutoresizingMaskIntoConstraints = false
+        errorMessageLabel.textColor = .systemRed
+        errorMessageLabel.text = "Enter your password"
+        errorMessageLabel.font = .preferredFont(forTextStyle: .footnote)
+        errorMessageLabel.adjustsFontSizeToFitWidth = true
+        errorMessageLabel.minimumScaleFactor = 0.8
+        errorMessageLabel.isHidden = false
     }
     
     func layout() {
@@ -62,6 +71,7 @@ extension PasswordTextField {
         addSubview(textField)
         addSubview(eyeButton)
         addSubview(dividerView)
+        addSubview(errorMessageLabel)
         
         // Lock Image view
         NSLayoutConstraint.activate([
@@ -88,6 +98,13 @@ extension PasswordTextField {
             dividerView.topAnchor.constraint(equalToSystemSpacingBelow: textField.bottomAnchor, multiplier: 1),
             dividerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
             dividerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0)
+        ])
+        
+        // Error message label
+        NSLayoutConstraint.activate([
+            errorMessageLabel.topAnchor.constraint(equalTo: dividerView.bottomAnchor, constant: 4),
+            errorMessageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+            errorMessageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0)
         ])
         
         // CHCR
