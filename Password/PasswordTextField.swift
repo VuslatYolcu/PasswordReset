@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol PasswordTextFieldDelegate: AnyObject {
+    func editingChanged(_ sender: PasswordTextField)
+}
+
 class PasswordTextField: UIView {
     
     let lockImageView = UIImageView(image: UIImage(systemName: "lock.fill"))
@@ -15,6 +19,8 @@ class PasswordTextField: UIView {
     let eyeButton = UIButton(type: .custom)
     let dividerView = UIView()
     let errorMessageLabel = UILabel()
+    
+    weak var delegate: PasswordTextFieldDelegate?
     
     init(placeHolderText: String) {
         self.placeHolderText = placeHolderText
@@ -41,10 +47,13 @@ extension PasswordTextField {
         
         lockImageView.translatesAutoresizingMaskIntoConstraints = false
         
+        // extra interaction
+        textField.addTarget(self, action: #selector(textFieldEditingChanged), for: .editingChanged)
+        
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.isSecureTextEntry = false
         textField.placeholder = placeHolderText
-        //textField.delegate = self
+        textField.delegate = self
         textField.keyboardType = .asciiCapable // Prevents emojis
         textField.attributedPlaceholder = NSAttributedString(string: placeHolderText, attributes: [NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel])
         
@@ -62,7 +71,7 @@ extension PasswordTextField {
         errorMessageLabel.font = .preferredFont(forTextStyle: .footnote)
         errorMessageLabel.numberOfLines = 0
         errorMessageLabel.lineBreakMode = .byWordWrapping
-        errorMessageLabel.isHidden = false
+        errorMessageLabel.isHidden = true
         // In order to fit the text, you can adjust font size
         //errorMessageLabel.adjustsFontSizeToFitWidth = true
         //errorMessageLabel.minimumScaleFactor = 0.0
@@ -123,4 +132,13 @@ extension PasswordTextField {
         textField.isSecureTextEntry.toggle()
         eyeButton.isSelected.toggle()
     }
+    
+    @objc func textFieldEditingChanged(_ sender: UITextField) {
+        delegate?.editingChanged(self)
+    }
+}
+
+// MARK: UITextFieldDelegate
+extension PasswordTextField: UITextFieldDelegate {
+    
 }
