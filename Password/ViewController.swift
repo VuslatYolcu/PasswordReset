@@ -155,7 +155,13 @@ extension ViewController: PasswordTextFieldDelegate {
 // MARK: Keyboard
 extension ViewController {
     @objc func keyboardWillShow(sender: NSNotification) {
-        view.frame.origin.y = view.frame.origin.y - 200
+        guard let userInfo = sender.userInfo,
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+              let currentTextField = UIResponder.currentFirst() as? UITextField else { return }
+        
+        print("foo - userInfo: \(userInfo)")
+        print("foo - keyboardFrame: \(keyboardFrame)")
+        print("foo - currentTextField: \(currentTextField)")
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
