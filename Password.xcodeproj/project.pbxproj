@@ -15,6 +15,7 @@
 		1176698829C6300D002DF3E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1176698729C6300D002DF3E3 /* Assets.xcassets */; };
 		1176698B29C6300D002DF3E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1176698929C6300D002DF3E3 /* LaunchScreen.storyboard */; };
 		1176699429C63FE5002DF3E3 /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1176699329C63FE5002DF3E3 /* PasswordTextField.swift */; };
+		1184774F29D04B4100CB43D9 /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1184774E29D04B4100CB43D9 /* ViewControllerTests.swift */; };
 		11A77BD129C7221B003B17DB /* PasswordCriteriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A77BD029C7221B003B17DB /* PasswordCriteriaView.swift */; };
 		11A77BD329C72BAB003B17DB /* PasswordStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A77BD229C72BAB003B17DB /* PasswordStatusView.swift */; };
 		11AF370B29CCD16E0012DAEF /* UIResponder+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AF370A29CCD16E0012DAEF /* UIResponder+Utils.swift */; };
@@ -42,6 +43,7 @@
 		1176698A29C6300D002DF3E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1176698C29C6300D002DF3E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1176699329C63FE5002DF3E3 /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
+		1184774E29D04B4100CB43D9 /* ViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
 		11A77BD029C7221B003B17DB /* PasswordCriteriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordCriteriaView.swift; sourceTree = "<group>"; };
 		11A77BD229C72BAB003B17DB /* PasswordStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordStatusView.swift; sourceTree = "<group>"; };
 		11AF370A29CCD16E0012DAEF /* UIResponder+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Utils.swift"; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 			children = (
 				115ACB0329CEFFB200714848 /* PasswordCriteriaTests.swift */,
 				115ACB0529CF059E00714848 /* PasswordStatusViewTests.swift */,
+				1184774E29D04B4100CB43D9 /* ViewControllerTests.swift */,
 			);
 			path = PasswordTests;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1184774F29D04B4100CB43D9 /* ViewControllerTests.swift in Sources */,
 				115ACB0429CEFFB200714848 /* PasswordCriteriaTests.swift in Sources */,
 				115ACB0629CF059E00714848 /* PasswordStatusViewTests.swift in Sources */,
 			);
